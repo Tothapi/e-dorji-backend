@@ -1,6 +1,13 @@
 const { buildSchema } = require("graphql");
 
 module.exports = buildSchema(`
+scalar Upload
+type Photo {
+      id: Int,
+      fileLocation: String,
+      description: String,
+      tags: String
+}
 
 type Booking{
   _id:ID!
@@ -24,6 +31,7 @@ type User {
   _id: ID!
   email: String!
   password: String! 
+  role: String 
 
 }
 
@@ -31,6 +39,7 @@ type AuthData{
   userId: ID!
   token: String!
   tokenExpiration: Int!
+  role: String
 }
 
 input EventInput {
@@ -53,6 +62,7 @@ type RootQuery {
 
 type RootMutation {
     createEvent(eventInput: EventInput): Event
+    addPhoto(file: Upload!, description: String, tags: String): Photo
     createUser(userInput: UserInput): User
     bookEvent(eventId:ID!):Booking!
     cancelBooking(bookingId:ID!):Event!

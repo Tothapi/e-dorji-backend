@@ -21,11 +21,16 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  createdEvents: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Event",
-    },
-  ],
+  role: {
+    type: String,
+    enum: ["admin", "user"],
+    default: "user",
+  },
+  // createdEvents: [
+  //   {
+  //     type: mongoose.Schema.Types.ObjectId,
+  //     ref: "Event",
+  //   },
+  // ],
 });
 module.exports = mongoose.model("User", userSchema);

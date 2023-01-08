@@ -8,19 +8,31 @@ const Event = require("./models/events");
 const User = require("./models/User");
 const bcrypt = require("bcryptjs");
 const schema = require("./graphql/schema");
-
+// const { graphqlUploadExpress } = require("graphql-upload");
 const rootResolver = require("./graphql/resolvers");
 const isAuth = require("./graphql/middleware/isAuth");
 const app = express();
 const cors = require("cors");
+app.use("/images", express.static("images"));
+const designRoute = require("./routes/design.route");
 app.use(cors());
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+  res.setHeader("Access-Control-Allow-Headers", "*");
+  res.header("Access-Control-Allow-Credentials", true);
+  next();
+});
+app.use(express.json());
 
 const events = [];
 app.use(isAuth);
 app.use(bodyParser.json());
+app.use("/designs", designRoute);
+// app.use("/photos", express.static(path.join(__dirname, "photos")));
 
 app.use(
   "/graphql",
+  // graphqlUploadExpress({ maxFileSize: 10000000, maxFiles: 10 }),
   graphqlHTTP({
     schema: schema,
     rootValue: rootResolver,
