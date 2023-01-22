@@ -15,6 +15,7 @@ const app = express();
 const cors = require("cors");
 app.use("/images", express.static("images"));
 const designRoute = require("./routes/design.route");
+const catalogueRoute = require("./routes/catalogue.route");
 app.use(cors());
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
@@ -28,6 +29,7 @@ const events = [];
 app.use(isAuth);
 app.use(bodyParser.json());
 app.use("/designs", designRoute);
+app.use("/catalogue", catalogueRoute);
 // app.use("/photos", express.static(path.join(__dirname, "photos")));
 
 app.use(

@@ -14,7 +14,12 @@ exports.fileUpload = async (req, res) => {
 };
 exports.titleAdd = async (req, res) => {
   try {
-    const design = await updateDesignService(req.body.id, req.body.title);
+    const design = await updateDesignService(
+      req.body.id,
+      req.body.title,
+      req.body.productType,
+      req.body.description
+    );
     res.status(200).json({ status: "Completed", design });
   } catch (error) {
     res.status(400).json({ status: "fail", message: "title not added" });

@@ -18,6 +18,12 @@ type Booking{
 
 }
 
+type Catalogue{
+  _id:ID!
+  productType:String!
+  file:String!
+}
+
 type Event {
   _id: ID!
   title: String!

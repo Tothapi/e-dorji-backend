@@ -2,7 +2,7 @@ const { default: mongoose } = require("mongoose");
 
 const Schema = mongoose.Schema;
 
-const designSchema = new Schema({
+const catalogueSchema = new Schema({
   title: {
     type: String,
     require: true,
@@ -10,10 +10,6 @@ const designSchema = new Schema({
   file: {
     type: String,
     require: true,
-  },
-  description: {
-    type: String,
-    require: false,
   },
   productType: {
     type: String,
@@ -29,4 +25,4 @@ const designSchema = new Schema({
     default: "others",
   },
 });
-module.exports = mongoose.model("Design", designSchema);
+module.exports = mongoose.model("Catalogue", catalogueSchema);
