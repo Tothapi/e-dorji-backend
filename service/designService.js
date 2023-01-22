@@ -17,3 +17,7 @@ exports.getDesignService = async () => {
   const cre = await Designs.find();
   return cre;
 };
+exports.getSpecificDesignService = async (id) => {
+  const cre = await Designs.findById(id);
+  return cre;
+};

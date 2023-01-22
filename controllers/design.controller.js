@@ -2,6 +2,7 @@ const {
   postDesignService,
   updateDesignService,
   getDesignService,
+  getSpecificDesignService,
 } = require("../service/designService");
 
 exports.fileUpload = async (req, res) => {
@@ -29,6 +30,18 @@ exports.getDesigns = async (req, res) => {
   console.log("get design calling");
   try {
     const design = await getDesignService();
+    console.log(design, "all designs");
+    res.status(200).json({ status: "Completed", design });
+  } catch (error) {
+    res.status(400).json({ status: "fail", message: "title not added" });
+  }
+};
+exports.getSingleDesign = async (req, res) => {
+  console.log("get design calling");
+  try {
+    const { id } = req.params;
+    console.log("get design calling", id, "id");
+    const design = await getSpecificDesignService(id);
     console.log(design, "all designs");
     res.status(200).json({ status: "Completed", design });
   } catch (error) {
