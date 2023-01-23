@@ -15,6 +15,11 @@ const designSchema = new Schema({
     type: String,
     require: false,
   },
+  price: {
+    type: Number,
+    require: false,
+    default: 100,
+  },
   productType: {
     type: String,
     enum: [

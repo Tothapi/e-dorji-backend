@@ -19,7 +19,8 @@ exports.titleAdd = async (req, res) => {
       req.body.id,
       req.body.title,
       req.body.productType,
-      req.body.description
+      req.body.description,
+      req.body.price
     );
     res.status(200).json({ status: "Completed", design });
   } catch (error) {
