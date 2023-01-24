@@ -28,3 +28,7 @@ exports.getSpecificDesignService = async (id) => {
   const cre = await Designs.findById(id);
   return cre;
 };
+exports.deleteSpecificDesignService = async (id) => {
+  const cre = await Designs.deleteOne({ _id: id });
+  return cre;
+};
