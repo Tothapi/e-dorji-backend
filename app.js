@@ -16,8 +16,20 @@ const cors = require("cors");
 app.use("/images", express.static("images"));
 const designRoute = require("./routes/design.route");
 const catalogueRoute = require("./routes/catalogue.route");
-app.use(cors());
+const corsOpts = {
+  origin: "*",
+
+  methods: ["GET", "POST"],
+
+  allowedHeaders: ["Content-Type"],
+};
+
+app.use(cors(corsOpts));
 app.use((req, res, next) => {
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
   res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
   res.setHeader("Access-Control-Allow-Headers", "*");
   res.header("Access-Control-Allow-Credentials", true);
@@ -47,7 +59,7 @@ mongoose
     `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0.y5siwts.mongodb.net/${process.env.MONGO_DB}?retryWrites=true&w=majority`
   )
   .then(() => {
-    app.listen(4000);
+    app.listen(process.env.PORT || 4000);
     console.log("mongodb connect successfull");
   })
   .catch((err) => {
