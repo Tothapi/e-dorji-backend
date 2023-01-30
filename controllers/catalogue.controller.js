@@ -23,12 +23,6 @@ exports.fileUpload = async (req, res) => {
   }
 };
 exports.addDocuments = async (req, res) => {
-  console.log(
-    req.body.id,
-    req.body.title,
-    req.body.productType,
-    "add documents"
-  );
   try {
     const design = await updateCatalogueService(
       req.body.id,

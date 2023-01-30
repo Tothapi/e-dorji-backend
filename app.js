@@ -16,6 +16,7 @@ const cors = require("cors");
 app.use("/images", express.static("images"));
 const designRoute = require("./routes/design.route");
 const catalogueRoute = require("./routes/catalogue.route");
+const cartRoutes = require("./routes/cart.routes");
 const corsOpts = {
   origin: "*",
 
@@ -58,6 +59,7 @@ app.use(isAuth);
 app.use(bodyParser.json());
 app.use("/designs", designRoute);
 app.use("/catalogue", catalogueRoute);
+app.use("/checkout", cartRoutes);
 // app.use("/photos", express.static(path.join(__dirname, "photos")));
 
 app.use(
